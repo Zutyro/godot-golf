@@ -1,0 +1,120 @@
+[gd_scene load_steps=11 format=3 uid="uid://dv07rdb3cj0eh"]
+
+[ext_resource type="Script" uid="uid://demeaphar7ux" path="res://scripts/bomb.gd" id="1_6rkkf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rj586"]
+
+[sub_resource type="Gradient" id="Gradient_4d7sh"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ir8iy"]
+gradient = SubResource("Gradient_4d7sh")
+
+[sub_resource type="Gradient" id="Gradient_qtt4c"]
+offsets = PackedFloat32Array(0.0133333, 0.973333)
+colors = PackedColorArray(1, 0.8, 0.4, 1, 1, 0.2, 0, 1)
+
+[sub_resource type="Gradient" id="Gradient_p7cim"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.571429, 1)
+colors = PackedColorArray(0.61818, 0.285645, 0.158173, 1, 0.604553, 0.318334, 0.207703, 1, 0.465622, 0.265641, 0.187206, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y8h73"]
+gradient = SubResource("Gradient_p7cim")
+
+[sub_resource type="Animation" id="Animation_pfrxs"]
+resource_name = "Exploze"
+length = 0.13
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("GradientTexture2D_ir8iy"), SubResource("GradientTexture2D_y8h73")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_mxrgq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("GradientTexture2D_ir8iy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4dbja"]
+_data = {
+&"Exploze": SubResource("Animation_pfrxs"),
+&"RESET": SubResource("Animation_mxrgq")
+}
+
+[node name="Bomb" type="Area2D"]
+script = ExtResource("1_6rkkf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rj586")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(6.25849e-07, -2.98023e-07)
+scale = Vector2(0.3125, 0.3125)
+texture = SubResource("GradientTexture2D_ir8iy")
+
+[node name="BombSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="ExplosionParticles" type="CPUParticles2D" parent="."]
+top_level = true
+position = Vector2(465, 207)
+scale = Vector2(2, 2)
+emitting = false
+amount = 100
+lifetime = 0.13
+one_shot = true
+speed_scale = 0.1
+lifetime_randomness = 0.1
+fract_delta = false
+emission_shape = 1
+emission_sphere_radius = 6.48
+direction = Vector2(5, 5)
+color_ramp = SubResource("Gradient_qtt4c")
+
+[node name="Exploze" type="AnimationPlayer" parent="."]
+active = false
+deterministic = true
+libraries = {
+&"": SubResource("AnimationLibrary_4dbja")
+}

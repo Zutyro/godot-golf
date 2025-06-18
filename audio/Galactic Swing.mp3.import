@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b10p66fuy3o7h"
+path="res://.godot/imported/Galactic Swing.mp3-21d2333a7c4a9b10f157fdf93c0a33d5.mp3str"
+
+[deps]
+
+source_file="res://audio/Galactic Swing.mp3"
+dest_files=["res://.godot/imported/Galactic Swing.mp3-21d2333a7c4a9b10f157fdf93c0a33d5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

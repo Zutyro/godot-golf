@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccg1rlaykqw5a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(100, 20)
+
+[sub_resource type="Gradient" id="Gradient_32nca"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.512987, 1)
+colors = PackedColorArray(0.822729, 0.661992, 0.565139, 1, 0.56503, 0.407207, 0.309324, 1, 0.823529, 0.662745, 0.564706, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kq2mk"]
+gradient = SubResource("Gradient_32nca")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kq2mk"]
+polygon = PackedVector2Array(0.373531, 4.38039, 1.81019, 4.36617, 1.81019, 4.66483, 0.373531, 4.66483)
+
+[node name="Woodwall" type="StaticBody2D" groups=["wood"]]
+scale = Vector2(2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(40, 0)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(40, 0.5)
+scale = Vector2(1.5625, 0.296875)
+texture = SubResource("GradientTexture2D_kq2mk")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+position = Vector2(-49.2183, -1072.84)
+scale = Vector2(45.2262, 236.845)
+occluder = SubResource("OccluderPolygon2D_kq2mk")

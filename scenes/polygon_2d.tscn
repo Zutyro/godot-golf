@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://hgml3jyfpa5y"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_01pou"]
+polygon = PackedVector2Array(2.5, 10, 16, 10, 2.5, 50)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(2, 10, 16, 10, 3, 50)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.823529, 0.662745, 0.564706, 1)
+polygon = PackedVector2Array(2.5, 10, 2.5, 50, 16, 10)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Polygon2D"]
+occluder = SubResource("OccluderPolygon2D_01pou")

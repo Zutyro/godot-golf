@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://beu4g64fqbayj"]
+
+[ext_resource type="Texture2D" uid="uid://cu50bs4j1ebye" path="res://textures/golfball.png" id="1_m6pip"]
+[ext_resource type="Script" uid="uid://crcdndfwjlpas" path="res://scripts/golfball.gd" id="1_nh77r"]
+[ext_resource type="AudioStream" uid="uid://bpt3w37jv4plj" path="res://audio/woodhit.mp3" id="3_1uvab"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y32ns"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wtcfe"]
+radius = 14.0357
+
+[sub_resource type="Gradient" id="Gradient_m6pip"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.459201, 0.179218, 0.0485172, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kw517"]
+gradient = SubResource("Gradient_m6pip")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mdxgm"]
+radius = 15.0333
+
+[node name="Golfball" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_y32ns")
+script = ExtResource("1_nh77r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.57628e-07, -5.96046e-08)
+scale = Vector2(0.28, -0.28)
+texture = ExtResource("1_m6pip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wtcfe")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1.49994, -0.999908)
+scale = Vector2(37.6406, 28.8125)
+color = Color(0.456931, 0.255887, 0.124174, 1)
+energy = 1.46
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.815686)
+shadow_filter = 1
+shadow_filter_smooth = 2.6
+texture = SubResource("GradientTexture2D_kw517")
+
+[node name="OdpalMicku" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_mdxgm")
+
+[node name="CollisionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1uvab")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

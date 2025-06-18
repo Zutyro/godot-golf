@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfpinlsum1f0c"]
+
+[ext_resource type="Script" uid="uid://k3rxnk1qcvek" path="res://scripts/hole.gd" id="1_lerre"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hookw"]
+size = Vector2(26, 26)
+
+[sub_resource type="Gradient" id="Gradient_rj586"]
+colors = PackedColorArray(0.306923, 0.306923, 0.306923, 1, 0.41598, 0.41598, 0.41598, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lerre"]
+gradient = SubResource("Gradient_rj586")
+fill = 2
+
+[node name="Hole" type="Area2D"]
+script = ExtResource("1_lerre")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_hookw")
+
+[node name="Jamka" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+scale = Vector2(-0.389999, 0.41)
+texture = SubResource("GradientTexture2D_lerre")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

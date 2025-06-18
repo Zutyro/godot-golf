@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://r3krc0sn8fnw"
+path="res://.godot/imported/Gentle Swing.mp3-43f333de8487759a6e0a55f6cdcc522a.mp3str"
+
+[deps]
+
+source_file="res://audio/Gentle Swing.mp3"
+dest_files=["res://.godot/imported/Gentle Swing.mp3-43f333de8487759a6e0a55f6cdcc522a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

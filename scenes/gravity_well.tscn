@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dwhbtjakods4u"]
+
+[ext_resource type="Script" uid="uid://cimldxodt373h" path="res://scripts/gravity_well.gd" id="1_uky64"]
+[ext_resource type="Texture2D" uid="uid://db7rr467msbv" path="res://textures/gravity_well_marker.png" id="2_80v1a"]
+[ext_resource type="Texture2D" uid="uid://b5gsln5y6dmtm" path="res://textures/gravity_well.png" id="3_rdvqj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7uttt"]
+radius = 195.0
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rdvqj"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(-242.857, -71.4286, -221.429, -114.286, -178.571, -178.571, -128.571, -214.286, -78.5714, -235.714, -7.14287, -250, 57.1428, -242.857, 121.429, -221.429, 178.571, -178.571, 214.286, -128.571, 242.857, -64.2857, 250, 1.44754e-05, 242.857, 57.1429, 228.571, 100, 200, 150, 164.286, 185.714, 128.571, 214.286, 78.5714, 235.714, 21.4286, 250, -35.7143, 250, -114.286, 221.429, -164.286, 185.714, -207.143, 142.857, -235.714, 85.7143, -250, 28.5714, -250, -21.4286)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6lxtr"]
+radius = 35.0143
+
+[node name="GravityWell" type="StaticBody2D"]
+script = ExtResource("1_uky64")
+
+[node name="Area2D" type="Area2D" parent="."]
+gravity_space_override = 3
+gravity_point = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_7uttt")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(-1.16825e-05, -1.16825e-05)
+scale = Vector2(0.788, 0.788)
+texture = ExtResource("2_80v1a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.90735e-06, -2.02656e-06)
+scale = Vector2(0.14, 0.14)
+texture = ExtResource("3_rdvqj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+occluder = SubResource("OccluderPolygon2D_rdvqj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["rock"]]
+shape = SubResource("CircleShape2D_6lxtr")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

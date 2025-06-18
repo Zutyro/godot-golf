@@ -1,0 +1,190 @@
+[gd_scene load_steps=16 format=3 uid="uid://c8fhal8dhxwwj"]
+
+[ext_resource type="PackedScene" uid="uid://b3vahot1dmlnm" path="res://scenes/drag_marker.tscn" id="1_jyq2n"]
+[ext_resource type="Script" path="res://scripts/level3.gd" id="1_rupth"]
+[ext_resource type="PackedScene" uid="uid://beu4g64fqbayj" path="res://scenes/golfball.tscn" id="2_7uttt"]
+[ext_resource type="PackedScene" uid="uid://b0fh54sy235al" path="res://scenes/ui.tscn" id="3_6lxtr"]
+[ext_resource type="PackedScene" uid="uid://dfpinlsum1f0c" path="res://scenes/hole.tscn" id="4_b72m1"]
+[ext_resource type="PackedScene" uid="uid://ccg1rlaykqw5a" path="res://scenes/woodwall.tscn" id="5_7uttt"]
+[ext_resource type="PackedScene" path="res://scenes/gravity_well.tscn" id="6_6lxtr"]
+[ext_resource type="Script" uid="uid://3xuev7h84hkq" path="res://scripts/death_zone.gd" id="7_b72m1"]
+[ext_resource type="AudioStream" uid="uid://b10p66fuy3o7h" path="res://audio/Galactic Swing.mp3" id="8_5mhml"]
+[ext_resource type="PackedScene" uid="uid://dv07rdb3cj0eh" path="res://scenes/bomba.tscn" id="9_6qt4k"]
+
+[sub_resource type="Gradient" id="Gradient_q6r6c"]
+offsets = PackedFloat32Array(0, 0.266234, 1)
+colors = PackedColorArray(0.182847, 0.459959, 0.154202, 1, 0.184314, 0.458824, 0.152941, 1, 0.184314, 0.458824, 0.152941, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6lxtr"]
+gradient = SubResource("Gradient_q6r6c")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mhml"]
+size = Vector2(129, 1526.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b72m1"]
+size = Vector2(421, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rupth"]
+size = Vector2(116, 441)
+
+[node name="Level3" type="Node2D"]
+script = ExtResource("1_rupth")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_left = -1426.0
+offset_top = -1144.0
+offset_right = 4069.0
+offset_bottom = 2986.0
+color = Color(0, 0, 0, 1)
+
+[node name="Grass" type="TextureRect" parent="."]
+offset_left = 370.0
+offset_top = 169.0
+offset_right = 434.0
+offset_bottom = 233.0
+scale = Vector2(24.3651, 3.3867)
+texture = SubResource("GradientTexture2D_6lxtr")
+
+[node name="Grass2" type="TextureRect" parent="."]
+offset_left = 1929.0
+offset_top = 169.0
+offset_right = 1993.0
+offset_bottom = 233.0
+scale = Vector2(3.66396, 23.2296)
+texture = SubResource("GradientTexture2D_6lxtr")
+
+[node name="DragMarker" parent="." node_paths=PackedStringArray("node_drag_start") instance=ExtResource("1_jyq2n")]
+z_index = 1
+node_drag_start = NodePath("../Golfball")
+
+[node name="Golfball" parent="." instance=ExtResource("2_7uttt")]
+z_index = 1
+position = Vector2(441, 275)
+metadata/_edit_group_ = true
+
+[node name="Camera2D" type="Camera2D" parent="Golfball"]
+
+[node name="UI" parent="." instance=ExtResource("3_6lxtr")]
+
+[node name="Hole" parent="." instance=ExtResource("4_b72m1")]
+position = Vector2(2044, 1592)
+next_level_path = "res://scenes/main_menu.tscn"
+
+[node name="Woodwall" parent="." instance=ExtResource("5_7uttt")]
+position = Vector2(402, 175)
+scale = Vector2(3.32, 1)
+
+[node name="Woodwall7" parent="." instance=ExtResource("5_7uttt")]
+position = Vector2(1106, 174)
+rotation = 1.56455
+scale = Vector2(0.679302, 1)
+
+[node name="Woodwall8" parent="." instance=ExtResource("5_7uttt")]
+position = Vector2(1424, 327)
+rotation = 1.56455
+scale = Vector2(0.679302, 1)
+
+[node name="Woodwall9" parent="." instance=ExtResource("5_7uttt")]
+position = Vector2(1737, 173)
+rotation = 1.56455
+scale = Vector2(0.679302, 1)
+
+[node name="Woodwall3" parent="." instance=ExtResource("5_7uttt")]
+position = Vector2(1120, 171)
+scale = Vector2(2.37389, 0.979155)
+
+[node name="Woodwall4" parent="." instance=ExtResource("5_7uttt")]
+position = Vector2(1750, 172)
+scale = Vector2(1.93389, 0.979155)
+
+[node name="Woodwall10" parent="." instance=ExtResource("5_7uttt")]
+position = Vector2(1949, 172)
+scale = Vector2(2.41389, 0.979155)
+
+[node name="Woodwall2" parent="." instance=ExtResource("5_7uttt")]
+position = Vector2(434, 392)
+scale = Vector2(6.42775, 1)
+
+[node name="Woodwall5" parent="." instance=ExtResource("5_7uttt")]
+position = Vector2(1467, 385)
+scale = Vector2(5.06775, 1)
+
+[node name="Woodwall6" parent="." instance=ExtResource("5_7uttt")]
+position = Vector2(1467, 385)
+scale = Vector2(5.06775, 1)
+
+[node name="GravityWell" parent="." groups=["rock"] instance=ExtResource("6_6lxtr")]
+position = Vector2(899, 173)
+
+[node name="GravityWell2" parent="." groups=["rock"] instance=ExtResource("6_6lxtr")]
+position = Vector2(1219, 393)
+
+[node name="GravityWell3" parent="." groups=["rock"] instance=ExtResource("6_6lxtr")]
+position = Vector2(1535, 171)
+
+[node name="GravityWell4" parent="." groups=["rock"] instance=ExtResource("6_6lxtr")]
+position = Vector2(2051, 282)
+
+[node name="GravityWell6" parent="." groups=["rock"] instance=ExtResource("6_6lxtr")]
+position = Vector2(2251, 645)
+
+[node name="GravityWell5" parent="." groups=["rock"] instance=ExtResource("6_6lxtr")]
+position = Vector2(1859, 643)
+
+[node name="GravityWell7" parent="." groups=["rock"] instance=ExtResource("6_6lxtr")]
+position = Vector2(1861, 1039)
+
+[node name="GravityWell8" parent="." groups=["rock"] instance=ExtResource("6_6lxtr")]
+position = Vector2(2255, 1039)
+
+[node name="GravityWell9" parent="." groups=["rock"] instance=ExtResource("6_6lxtr")]
+position = Vector2(2042, 1606)
+scale = Vector2(0.456144, 0.456144)
+
+[node name="DeathZone" type="Area2D" parent="."]
+script = ExtResource("7_b72m1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(2238, 921.75)
+shape = SubResource("RectangleShape2D_5mhml")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(1852, 1163)
+shape = SubResource("RectangleShape2D_5mhml")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(1215, 428)
+shape = SubResource("RectangleShape2D_b72m1")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(2053, 1696)
+shape = SubResource("RectangleShape2D_b72m1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(903.5, 132)
+shape = SubResource("RectangleShape2D_b72m1")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(1535, 131)
+shape = SubResource("RectangleShape2D_b72m1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(300, 282.5)
+shape = SubResource("RectangleShape2D_rupth")
+
+[node name="Bomb" parent="." instance=ExtResource("9_6qt4k")]
+position = Vector2(2002, 1348)
+
+[node name="Bomb2" parent="." instance=ExtResource("9_6qt4k")]
+position = Vector2(2047, 1403)
+
+[node name="Bomb3" parent="." instance=ExtResource("9_6qt4k")]
+position = Vector2(2089, 1348)
+
+[node name="Stage3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_5mhml")
+autoplay = true
+parameters/looping = true
+
+[connection signal="drag_released" from="DragMarker" to="Golfball" method="_on_drag_marker_drag_released"]
+[connection signal="stroke_count_updated" from="Golfball" to="UI" method="_on_golfball_stroke_count_updated"]

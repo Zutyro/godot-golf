@@ -1,6 +1,6 @@
 extends Line2D
 
-signal drag_released
+signal drag_released(velocity: Vector2)
 
 @export var node_drag_start: RigidBody2D
 
@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var launch_velocity = get_drag_vector()
 	if launch_velocity.length() > 0:
 		emit_signal("drag_released",launch_velocity)
@@ -38,4 +38,4 @@ func get_drag_vector():
 		clear_points()
 		drag_label.hide()
 		velocity = drag_line_vector
-	return velocity
+	return velocity             

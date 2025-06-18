@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5akax0b4no5t"]
+
+[ext_resource type="Texture2D" uid="uid://2tsvfxkkcyne" path="res://textures/SnÔöť┬ímek obrazovky 2025-06-16 174011.png" id="1_hjq04"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ofwym"]
+polygon = PackedVector2Array(-32, -158, -12, -154, 15, -158, 45, -158, 73, -152, 100, -141, 121, -134, 138, -118, 154, -99, 178, -57, 191, -24, 208, -2, 221, 40, 220, 81, 199, 103, 150, 126, 111, 142, 58, 152, 3, 156, -67, 148, -121, 139, -156, 131, -187, 109, -211, 93, -222, 64, -219, 42, -204, 20, -191, -22, -177, -51, -165, -76, -136, -110, -116, -120, -96, -143, -72, -151)
+
+[node name="Rock" type="StaticBody2D" groups=["rock"]]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ofwym")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.378916, 0.376117, 0.345898, 1)
+texture = ExtResource("1_hjq04")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-90, -148, -63, -151, -31, -158, -14, -155, 23, -158, 53, -156, 78, -150, 102, -140, 123, -134, 151, -104, 166, -78, 184, -48, 190, -25, 210, 0, 221, 45, 220, 81, 202, 100, 173, 114, 136, 133, 89, 146, 48, 155, 19, 154, -39, 150, -119, 138, -153, 133, -177, 117, -211, 93, -218, 72, -219, 49, -212, 33, -205, 21, -196, -6, -183, -39, -174, -60, -163, -77, -149, -95, -131, -112, -107, -132)
